@@ -1,17 +1,27 @@
 module.exports = {
   env: {
     browser: true,
-    es2020: true,
+    es2021: true,
+    node: true,
   },
   extends: [
+    'plugin:react/recommended',
     'airbnb',
   ],
   parserOptions: {
-    ecmaVersion: 11,
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
   },
+  plugins: [
+    'react',
+  ],
   rules: {
     // Don't enforce control flow closing curly brace needs to be
-    // on same line as next control flow opening statement
+    // on same line as next control flow opening statement.
+    // This is so we can add comments above control flow statements such as else if or else.
     'brace-style': 'off',
     // Require import extensions for all imports except packages because
     // SWE1 doesn't use a bundler for executing Node, thus Node will fail
@@ -25,5 +35,6 @@ module.exports = {
     'no-console': 'off',
     // Allow function param reassign for array or object elements or properties
     'no-param-reassign': ['error', { props: false }],
+    'react/jsx-filename-extension': [0],
   },
 };
